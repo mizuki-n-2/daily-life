@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Todo;
+use App\Diary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class TodoController extends Controller
+class DiaryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class TodoController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $todos = DB::table('todos')->where('user_id',$id)->orderBy('updated_at', 'desc')->paginate(3);
-        return view('todo.index', ['todos' => $todos]);
+        $posts = DB::table('diaries')->where('user_id',$id)->orderBy('updated_at','desc')->paginate(3);
+        return view('diary.index',['posts' => $posts]);
     }
 
     /**
@@ -29,7 +29,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('todo.create');
+        return view('diary.create');
     }
 
     /**
@@ -41,76 +41,74 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $id = Auth::id();
-        $status = $_POST["status"];
         $now = Carbon::now();
         $param = [
-            'todo' => $request->todo,
             'user_id' => $id,
-            'time_limit' => $request->time_limit,
-            'status' => $status,
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => 'url',
             'created_at' => $now,
-            'updated_at' => $now
+            'updated_at' => $now 
         ];
-        DB::table('todos')->insert($param);
-        return redirect('/todo');  
+        DB::table('diaries')->insert($param);
+        return redirect('/diary');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Todo  $todo
+     * @param  \App\Diary  $diary
      * @return \Illuminate\Http\Response
      */
-    public function show(Todo $todo)
+    public function show(Diary $diary)
     {
-        //
+        $post = DB::table('diaries')->where('id',$diary->id)->first();
+        return view('diary.show',['post' => $post]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Todo  $todo
+     * @param  \App\Diary  $diary
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todo $todo)
+    public function edit(Diary $diary)
     {
-        $item = DB::table('todos')->where('id',$todo->id)->first();
-        // dd($item);
-        return view('todo.edit',['item' => $item]);
+        $post = DB::table('diaries')->where('id',$diary->id)->first();
+        return view('diary.edit',['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Todo  $todo
+     * @param  \App\Diary  $diary
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, Diary $diary)
     {
         $id = Auth::id();
-        $status = $_POST["status"];
         $now = Carbon::now();
         $param = [
-            'todo' => $request->todo,
             'user_id' => $id,
-            'time_limit' => $request->time_limit,
-            'status' => $status,
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => 'url',
             'updated_at' => $now
         ];
-        DB::table('todos')->where('id', $todo->id)->update($param);
-        return redirect('/todo');  
+        DB::table('diaries')->where('id',$diary->id)->update($param);
+        return redirect('/diary');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Todo  $todo
+     * @param  \App\Diary  $diary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy(Diary $diary)
     {
-        DB::table('todos')->where('id',$todo->id)->delete();
-        return redirect('/todo');
+        DB::table('diaries')->where('id',$diary->id)->delete();
+        return redirect('/diary');
     }
 }

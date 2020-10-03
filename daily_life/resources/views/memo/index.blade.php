@@ -20,6 +20,17 @@
       </form>
     </div>
   </div>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar content -->
+    <a class="navbar-brand" href="/todo/create"><i class="fas fa-plus fa-2x"></i></a>
+    <form class="form-inline">
+      <i class="fas fa-search fa-2x" style="color: white"></i>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+    </form>
+  </nav>
+  
   @foreach ($memos as $memo)
     <div class="card">
       <div class="card-body flex">

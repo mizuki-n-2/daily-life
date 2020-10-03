@@ -21,6 +21,7 @@
     </div>
   </div>
   <a href="/memo">メモ一覧へ</a>
+  <p>"{{ $keyword }}"の検索結果は{{ $search_memos->count() }}件見つかりました</p>
   @foreach ($search_memos as $memo)
     <div class="card">
       <div class="card-body flex">

@@ -17,10 +17,9 @@
   @foreach ($todos as $todo)
     <div class="card">
       <div class="card-body flex">
-        <div>
-          <input type="checkbox" id="check">
-          <label for="check"><h5 class="card-title">{{ $todo->todo }}</h5></label>
-        </div>
+        <h5 class="card-title">{{ $todo->todo }}</h5>
+        <p>{{ $todo->status }}</p>
+        <p>{{ $todo->time_limit }}</p>
         <div class="flex">
           <form action="/todo/{{ $todo->id }}" method="POST">
             @method('DELETE')
@@ -35,6 +34,6 @@
       </div>
     </div>
   @endforeach
-  {{ $todos->links() }}
+  {{ $todos->links() }} 
 </div>
 @endsection

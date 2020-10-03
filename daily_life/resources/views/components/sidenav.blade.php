@@ -7,7 +7,7 @@
     </li>
     <li><a href="/todo">toDoリスト</a></li>
     <li><a href="/memo">メモ</a></li>
-    <li><a href="">日記</a></li>
+    <li><a href="/diary">日記</a></li>
     <li>
       <div>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

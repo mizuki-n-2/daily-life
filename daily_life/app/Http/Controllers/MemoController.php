@@ -6,6 +6,7 @@ use App\Memo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MemoController extends Controller
 {
@@ -16,7 +17,8 @@ class MemoController extends Controller
      */
     public function index()
     {
-        $memos = DB::table('memos')->orderBy('updated_at', 'desc')->paginate(3);
+        $id = Auth::id();
+        $memos = DB::table('memos')->where('user_id',$id)->orderBy('updated_at', 'desc')->paginate(3);
         return view('memo.index', ['memos' => $memos]);
     }
 
@@ -38,11 +40,12 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
+        $id = Auth::id();
         $now = Carbon::now();
         $param = [
             'memo_name' => $request->title,
             'memo' => $request->content,
-            'user_id' => '1',
+            'user_id' => $id,
             'created_at' => $now,
             'updated_at' => $now
         ];
@@ -82,11 +85,12 @@ class MemoController extends Controller
      */
     public function update(Request $request, Memo $memo)
     {
+        $id = Auth::id();
         $now = Carbon::now();
         $param = [
             'memo_name' => $request->title,
             'memo' => $request->content,
-            'user_id' => '1',
+            'user_id' => $id,
             'updated_at' => $now
         ];
         DB::table('memos')->where('id', $memo->id)->update($param);
