@@ -23,6 +23,7 @@ class CreateDiariesTable extends Migration
             $table->string('title',100);
             $table->text('content');
             $table->string('image')->nullable();
+            $table->string('tag')->nullable();
             $table->timestamps();
         });
     }

@@ -27,7 +27,7 @@
           <input type="checkbox" id="check" name="check">
         </td>
         <td>
-          <label for="check">{{ $todo->todo }}</label>
+          {{ $todo->todo }}
         </td>
 
         @if ($todo->year === '')

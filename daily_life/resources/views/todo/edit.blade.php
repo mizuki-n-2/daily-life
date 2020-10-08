@@ -20,10 +20,10 @@
         </div>
       @endif
       <div class="form-group">
-        <label for="exampleFormControlInput1">toDo</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="todo" value="{{ $item->todo }}">
-        <label for="exampleFormControlInput1">期限</label>
-        <input type="datetime-local" class="form-control" id="exampleFormControlInput1" name="time_limit" value="{{ $data['year'].'-'.$data['month'].'-'.$data['date'].'T'.$data['time'] }}">
+        <label for="todo">toDo</label>
+        <input type="text" class="block todo-input" id="todo" name="todo" value="{{ $item->todo }}">
+        <label for="todo-date">期限</label>
+        <input type="datetime-local" class="block" id="todo-date" name="time_limit" value="{{ $data['year'].'-'.$data['month'].'-'.$data['date'].'T'.$data['time'] }}">
       </div>
       <div class="btn-container">
         <a href="/todo" class="back-btn">もどる</a>

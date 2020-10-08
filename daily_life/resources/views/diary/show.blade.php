@@ -23,9 +23,10 @@
   <div>
     <p class="show-title">{{ $post->title }}</p>
     <p class="show-content">{{ $post->content }}</p>
-    {{-- @if ($post->image !== '') --}}
+    <p class="show-tag">{{ $post->tag }}</p>
+    @if ($post->image !== '')
       <img src="{{ asset('/image/004.JPG') }}" width="100%">
-    {{-- @endif --}}
+    @endif
   </div>
 </div>
 @endsection

@@ -19,10 +19,10 @@
         </div>
       @endif
       <div class="form-group">
-        <label for="exampleFormControlInput1">toDo</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="todo">
-        <label for="exampleFormControlInput1">期限</label>
-        <input type="datetime-local" class="form-control" id="exampleFormControlInput1" name="time_limit">
+        <label for="todo">toDo</label>
+        <input type="text" class="block todo-input" id="todo" name="todo">
+        <label for="todo-date">期限</label>
+        <input type="datetime-local" id="todo-date" class="block" name="time_limit">
       </div>
       <div class="btn-container">
         <a href="/todo" class="back-btn">もどる</a>

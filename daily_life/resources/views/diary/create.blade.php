@@ -29,6 +29,10 @@
         <textarea class="diary-content" name="content" placeholder="自由に記述してください" rows="10"></textarea>
       </div>
       <div class="form-group">
+        <label for="tag">検索用タグ</label> 
+        <input type="text" class="block" id="tag" name="tag" placeholder="例：#tag" value="#">
+      </div>
+      <div class="form-group">
         <label for="image">＋画像を追加</label> 
         <input type="file" id="image" name="image" class="block">
       </div>

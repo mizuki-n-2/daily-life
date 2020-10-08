@@ -162,6 +162,7 @@ return [
         'time_limit' => '期限',
         'time' => '日付',
         'image' => '画像',
+        'tagWord' => 'タグ名',
     ],
 
 ];

@@ -20,14 +20,13 @@
       </form>
     </div>
   </div>
-  @if ($errors->any())
-    <div class="alert alert-danger">
-      @foreach ($errors->all() as $error)
-          <p>{{ $error }}</p>
-      @endforeach
-    </div>
+  <a href="/diary" class="to-post-btn">＜日記一覧へ</a>
+  @if ($search_posts->count() !== 0)
+    <p class="result">"{{ $tagWord }}"の検索結果は{{ $search_posts->count() }}件見つかりました</p>
+  @else
+    <p class="result">"{{ $tagWord }}"の検索結果は見つかりませんでした</p>  
   @endif
-  @foreach ($posts as $post)
+  @foreach ($search_posts as $post)
   <div class="card div-link">
     <div class="card-body flex between">
       <div>
@@ -44,6 +43,6 @@
     </div>
   </div> 
   @endforeach
-  {{ $posts->links() }}
+  {{ $search_posts->links() }}
 </div>
 @endsection

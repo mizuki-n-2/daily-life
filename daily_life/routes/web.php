@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::resource('/todo', 'TodoController')->middleware('auth');
 Route::resource('/memo', 'MemoController')->middleware('auth');
-Route::post('/memo/search', 'SearchController@search')->middleware('auth');
+Route::post('/memo/search', 'SearchController@memo')->middleware('auth');
 Route::resource('/diary', 'DiaryController')->middleware('auth');
+Route::post('/diary/search', 'SearchController@diary')->middleware('auth');
 
 Auth::routes();
 

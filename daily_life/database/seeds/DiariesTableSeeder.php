@@ -20,7 +20,8 @@ class DiariesTableSeeder extends Seeder
             'day' => '金',
             'title' => 'help',
             'content' => 'hellohello',
-            'image' => 'url'
+            'image' => 'url',
+            'tag' => 'good'
         ]);
     }
 }

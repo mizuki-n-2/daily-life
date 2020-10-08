@@ -30,6 +30,10 @@
         <textarea class="diary-content" name="content" placeholder="自由に記述してください" rows="10">{{ $post->content }}</textarea>
       </div>
       <div class="form-group">
+        <label for="tag">検索用タグ</label> 
+        <input type="text" class="block" id="tag" name="tag" placeholder="例：#tag" value="{{ $post->tag }}">
+      </div>
+      <div class="form-group">
         <p>
           <label for="image">＋画像を変更または追加</label> <input type="file" class="block" id="image" name="">
         </p>

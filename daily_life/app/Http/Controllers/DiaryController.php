@@ -44,7 +44,8 @@ class DiaryController extends Controller
             'time' => 'required',
             'title' => 'required|max:100',
             'content' => 'required',
-            'image' => 'nullable',
+            'image' => 'nullable|file|image',
+            'tag' => 'nullable'
         ]); 
 
         $id = Auth::id();
@@ -74,11 +75,12 @@ class DiaryController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'image' => $image,
+            'tag' => $request->tag,
             'created_at' => $now,
             'updated_at' => $now
         ];
         DB::table('diaries')->insert($param);
-
+        
         return redirect('/diary')->with('flash_message', '日記を作成しました');
     }
 
@@ -131,7 +133,8 @@ class DiaryController extends Controller
             'time' => 'required',
             'title' => 'required|max:100',
             'content' => 'required',
-            'image' => 'nullable',
+            'image' => 'nullable|file|image',
+            'tag' => 'nullable'
         ]); 
 
         $id = Auth::id();
@@ -161,6 +164,7 @@ class DiaryController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'image' => $image,
+            'tag' => $request->tag,
             'updated_at' => $now
         ];
         DB::table('diaries')->where('id',$diary->id)->update($param);
