@@ -14,22 +14,12 @@ class DiariesTableSeeder extends Seeder
     {
         DB::table('diaries')->insert([
             'user_id' => '1',
+            'year' => '2020',
+            'month' => '2',
+            'date' => '20',
+            'day' => '金',
             'title' => 'help',
             'content' => 'hellohello',
-            'image' => 'url'
-        ]);
-
-        DB::table('diaries')->insert([
-            'user_id' => '1',
-            'title' => 'hello',
-            'content' => 'everyone',
-            'image' => 'url'
-        ]);
-
-        DB::table('diaries')->insert([
-            'user_id' => '2',
-            'title' => 'good',
-            'content' => 'hahaha',
             'image' => 'url'
         ]);
     }

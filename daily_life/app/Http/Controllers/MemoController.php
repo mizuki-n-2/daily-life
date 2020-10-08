@@ -18,7 +18,7 @@ class MemoController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $memos = DB::table('memos')->where('user_id',$id)->orderBy('updated_at', 'desc')->paginate(3);
+        $memos = DB::table('memos')->where('user_id',$id)->orderBy('updated_at', 'desc')->paginate(5);
         return view('memo.index', ['memos' => $memos]);
     }
 
@@ -40,6 +40,11 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required',
+        ]); 
+
         $id = Auth::id();
         $now = Carbon::now();
         $param = [
@@ -50,7 +55,7 @@ class MemoController extends Controller
             'updated_at' => $now
         ];
         DB::table('memos')->insert($param);
-        return redirect('/memo');  
+        return redirect('/memo')->with('flash_message', 'メモを作成しました');  
     }
 
     /**
@@ -85,6 +90,11 @@ class MemoController extends Controller
      */
     public function update(Request $request, Memo $memo)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required',
+        ]); 
+
         $id = Auth::id();
         $now = Carbon::now();
         $param = [
@@ -94,7 +104,7 @@ class MemoController extends Controller
             'updated_at' => $now
         ];
         DB::table('memos')->where('id', $memo->id)->update($param);
-        return redirect('/memo');  
+        return redirect('/memo')->with('flash_message', 'メモを更新しました');  
     }
 
     /**
@@ -106,6 +116,6 @@ class MemoController extends Controller
     public function destroy(Memo $memo)
     {
         DB::table('memos')->where('id', $memo->id)->delete();
-        return redirect('/memo');
+        return redirect('/memo')->with('flash_message', 'メモを削除しました');
     }
 }

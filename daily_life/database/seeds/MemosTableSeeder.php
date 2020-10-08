@@ -17,17 +17,5 @@ class MemosTableSeeder extends Seeder
             'memo' => 'hello',
             'user_id' => '1'
         ]);
-
-        DB::table('memos')->insert([
-            'memo_name' => 'memo2',
-            'memo' => 'good',
-            'user_id' => '1'
-        ]);
-
-        DB::table('memos')->insert([
-            'memo_name' => 'memo3',
-            'memo' => 'hogehoge',
-            'user_id' => '2'
-        ]);
     }
 }

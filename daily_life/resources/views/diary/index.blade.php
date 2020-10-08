@@ -5,9 +5,9 @@
 @section('main')
 <div class="main">
   <h2 class="title">日記</h2>
-  <div class="flex memo-top">
+  <div class="flex top between">
     <div>
-      <a href="/diary/create"><i class="fas fa-plus fa-2x" style="color: black;"></i></a>
+      <a href="/diary/create"><i class="fas fa-plus fa-2x create-btn"></i></a>
     </div>
     <div>
       <form action="" method="POST">
@@ -21,21 +21,22 @@
     </div>
   </div>
   @foreach ($posts as $post)
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <svg class="bd-placeholder-img" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
+  <div class="card div-link">
+    <div class="card-body flex between">
+      <div>
+        <h1 class="card-title post-date">{{ $post->month.'月'.$post->date.'日'.$post->day }}</h1>
+        <h5 class="card-title post-title">{{ $post->title }}</h5>
+        <p class="post-tag">#tag</p>
+        <a href="/diary/{{ $post->id }}" class="link"></a>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{ $post->title }}</h5>
-          <p class="card-text">{{ $post->content }}</p>
-          <p class="card-text"><small class="text-muted">{{ $post->updated_at }}</small></p>
-          <a href="/diary/{{ $post->id }}">詳細へ</a>
-        </div>
+      <div>
+        {{-- @if ($post->image !== '') --}}
+          <img src="{{ asset('/image/004.JPG') }}" height="100px">
+        {{-- @endif --}}
       </div>
     </div>
-  </div>  
+  </div> 
   @endforeach
+  {{ $posts->links() }}
 </div>
 @endsection

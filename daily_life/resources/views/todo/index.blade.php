@@ -5,35 +5,56 @@
 @section('main')
 <div class="main">
   <h2 class="title">toDoリスト</h2>
-  <div class="flex list-container">
-    <div class="todo-container">
-      <a class="list-name" href="">to Do</a>
-      <a href="/todo/create"><i class="fas fa-plus fa-2x todo-plus-icon"></i></a>
-    </div>
-    <div class="done-container">
-      <a class="list-name" href="">Done</a>
-    </div>
+  <div class="flex between">
+    <p>現在のtoDo:{{ $todos->count() }}件</p>
+    <p><a href="/todo/create" class="create-btn"><i class="fas fa-plus"></i>toDoを作成</a></p>
   </div>
-  @foreach ($todos as $todo)
-    <div class="card">
-      <div class="card-body flex">
-        <h5 class="card-title">{{ $todo->todo }}</h5>
-        <p>{{ $todo->status }}</p>
-        <p>{{ $todo->time_limit }}</p>
-        <div class="flex">
-          <form action="/todo/{{ $todo->id }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <button type="submit" class="icon-btn"><i class="far fa-trash-alt fa-2x"></i></button>
-          </form>
-          <form action="/todo/{{ $todo->id }}/edit" method="GET">
-            @csrf
-            <button type="submit" class="icon-btn"><i class="far fa-edit fa-2x"></i></button>
-          </form>
-        </div>
-      </div>
-    </div>
-  @endforeach
-  {{ $todos->links() }} 
+  <div class="todo-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>toDo</th>
+          <th>期限</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach ($todos as $todo)
+      <tr>
+        <td>
+          <p class="status">未了</p>
+          <input type="checkbox" id="check" name="check">
+        </td>
+        <td>
+          <label for="check">{{ $todo->todo }}</label>
+        </td>
+
+        @if ($todo->year === '')
+          <td></td>
+        @else
+          <td>{{ $todo->year.'/'.$todo->month.'/'.$todo->date.$todo->day.' '.$todo->time }}</td>
+        @endif
+        
+        <td>
+          <div class="flex">
+            <form action="/todo/{{ $todo->id }}/edit" method="GET">
+              @csrf
+              <button type="submit" class="icon-btn edit-btn"><i class="far fa-edit"></i>編集</button>
+            </form>
+            <form action="/todo/{{ $todo->id }}" method="POST">
+              @method('DELETE')
+              @csrf
+              <button type="submit" class="icon-btn delete-btn"><i class="far fa-trash-alt"></i>削除</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      @endforeach
+      </tbody>
+    </table>
+    <input type="checkbox" name="all_check" id="all_check">
+    <label for="all_check" class="all_check_label">全て完了にする</label>
+  </div>
 </div>
 @endsection

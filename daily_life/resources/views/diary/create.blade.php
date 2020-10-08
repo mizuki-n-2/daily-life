@@ -6,20 +6,31 @@
 <div class="main">
   <h2 class="title">日記</h2>
   <div>
-    <form class="form" action="/diary" method="POST">
+    <form class="form" action="/diary" method="POST" enctype='multipart/form-data'>
       @csrf
       <h3 class="item-name">新規作成</h3>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
       <div class="form-group">
-        <label for="exampleFormControlInput1">タイトル</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="title">
+        <label for="date">日付</label>
+        <input type="date" id="date" name="time" class="block">
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">内容</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content"></textarea>
+        <input type="text" class="diary-title" name="title" placeholder="タイトル">
       </div>
       <div class="form-group">
-        <label for="exampleFormControlFile1">画像</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <textarea class="diary-content" name="content" placeholder="自由に記述してください" rows="10"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">＋画像を追加</label> 
+        <input type="file" id="image" name="image" class="block">
       </div>
       <div class="btn-container">
         <a href="/diary" class="back-btn">もどる</a>

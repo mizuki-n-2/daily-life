@@ -15,10 +15,13 @@ class CreateTodosTable extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->string('todo');
+            $table->string('todo',100);
             $table->string('user_id');
-            $table->dateTime('time_limit');
-            $table->string('status');
+            $table->string('year')->nullable();
+            $table->string('month')->nullable();
+            $table->string('date')->nullable();
+            $table->string('day')->nullable();
+            $table->string('time')->nullable();
             $table->timestamps();
         });
     }

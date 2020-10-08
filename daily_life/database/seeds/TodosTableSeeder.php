@@ -15,22 +15,11 @@ class TodosTableSeeder extends Seeder
         DB::table('todos')->insert([
             'todo' => 'study',
             'user_id' => '1',
-            'time_limit' => '2020-10-05 00:00:00',
-            'status' => '進行中'
-        ]);
-
-        DB::table('todos')->insert([
-            'todo' => 'run',
-            'user_id' => '1',
-            'time_limit' => '2020-10-06 00:00:00',
-            'status' => '未着手'
-        ]);
-
-        DB::table('todos')->insert([
-            'todo' => 'help',
-            'user_id' => '2',
-            'time_limit' => '2020-10-07 00:00:00',
-            'status' => '完了'
+            'year' => '2020',
+            'month' => '9',
+            'date' => '12',
+            'day' => '月',
+            'time' => '10:00'
         ]);
     }
 }

@@ -16,9 +16,13 @@ class CreateDiariesTable extends Migration
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('title');
-            $table->string('content');
-            $table->string('image');
+            $table->string('year');
+            $table->string('month');
+            $table->string('date');
+            $table->string('day');
+            $table->string('title',100);
+            $table->text('content');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

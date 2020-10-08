@@ -10,6 +10,15 @@
       @method('PUT')
       @csrf
       <h3 class="item-name">編集</h3>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
       <div class="form-group">
         <label for="exampleFormControlInput1">タイトル</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="{{ $item->memo_name }}">

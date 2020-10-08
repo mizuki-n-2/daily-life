@@ -15,8 +15,8 @@ class CreateMemosTable extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->id();
-            $table->string('memo_name');
-            $table->string('memo');
+            $table->string('memo_name',100);
+            $table->text('memo');
             $table->string('user_id');
             $table->timestamps();
         });

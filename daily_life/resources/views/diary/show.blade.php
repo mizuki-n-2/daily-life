@@ -5,25 +5,27 @@
 @section('main')
 <div class="main">
   <h2 class="title">日記</h2>
-  <div class="flex memo-top">
-    <div>
-      <p>{{ $post->updated_at }}</p>
-    </div>
+  <a href="/diary" class="to-post-btn">＜日記一覧へ</a>
+  <div class="flex top between">
+    <p class="show-date">{{ $post->month.'月'.$post->date.'日'.$post->day }}</p>
     <div class="flex">
       <form action="/diary/{{ $post->id }}" method="POST">
         @method('DELETE')
         @csrf
-        <button type="submit" class="icon-btn"><i class="far fa-trash-alt fa-2x"></i></button>
+        <button type="submit" class="icon-btn delete-btn"><i class="far fa-trash-alt fa-2x"></i></button>
       </form>
       <form action="/diary/{{ $post->id }}/edit" method="GET">
         @csrf
-        <button type="submit" class="icon-btn"><i class="far fa-edit fa-2x"></i></button>
+        <button type="submit" class="icon-btn edit-btn"><i class="far fa-edit fa-2x"></i></button>
       </form>
     </div>
   </div>
   <div>
-    <p>{{ $post->title }}</p>
-    <p>{{ $post->content }}</p>
+    <p class="show-title">{{ $post->title }}</p>
+    <p class="show-content">{{ $post->content }}</p>
+    {{-- @if ($post->image !== '') --}}
+      <img src="{{ asset('/image/004.JPG') }}" width="100%">
+    {{-- @endif --}}
   </div>
 </div>
 @endsection

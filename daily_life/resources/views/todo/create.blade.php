@@ -9,16 +9,18 @@
     <form class="form" action="/todo" method="POST">
       @csrf
       <h3 class="item-name">新規作成</h3>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
       <div class="form-group">
         <label for="exampleFormControlInput1">toDo</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="todo">
-        <label for="exampleFormControlSelect1">状態</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="status">
-          <option value="">選択してください</option>
-          <option>未着手</option>
-          <option>進行中</option>
-          <option>完了</option>
-        </select>
         <label for="exampleFormControlInput1">期限</label>
         <input type="datetime-local" class="form-control" id="exampleFormControlInput1" name="time_limit">
       </div>

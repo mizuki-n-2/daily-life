@@ -10,18 +10,20 @@
       @method('PUT')
       @csrf
       <h3 class="item-name">編集</h3>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
       <div class="form-group">
         <label for="exampleFormControlInput1">toDo</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" name="todo" value="{{ $item->todo }}">
-        <label for="exampleFormControlSelect1">状態</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="status">
-          <option value="">選択してください</option>
-          <option>未着手</option>
-          <option>進行中</option>
-          <option>完了</option>
-        </select>
         <label for="exampleFormControlInput1">期限</label>
-        <input type="datetime-local" class="form-control" id="exampleFormControlInput1" name="time_limit" value="{{ $item->time_limit }}">
+        <input type="datetime-local" class="form-control" id="exampleFormControlInput1" name="time_limit" value="{{ $data['year'].'-'.$data['month'].'-'.$data['date'].'T'.$data['time'] }}">
       </div>
       <div class="btn-container">
         <a href="/todo" class="back-btn">もどる</a>
